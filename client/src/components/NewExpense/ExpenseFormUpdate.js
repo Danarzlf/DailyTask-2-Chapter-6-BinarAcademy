@@ -57,7 +57,7 @@ const ExpenseDetail = () => {
 
   return (
     <div>
-      <h1>Product Detail</h1>
+      <h1>Product Update</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -96,7 +96,9 @@ const ExpenseDetail = () => {
         </label>
         <br />
         <div>
-          {image && <img src={image} alt="Product" style={{ width: "200px" }} />}
+          {image && (
+            <img src={image} alt="Product" style={{ width: "200px" }} />
+          )}
         </div>
         <br />
         <button type="submit" disabled={isLoading}>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import ExpenseDate from './ExpenseDate';
-import Card from '../UI/Card';
-import './ExpenseItem.css';
+import axios from "axios";
+import ExpenseDate from "./ExpenseDate";
+import Card from "../UI/Card";
+import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
   console.log(props);
@@ -15,7 +15,7 @@ const ExpenseItem = (props) => {
     try {
       await axios.delete(`http://localhost:8000/api/v1/products/${props.id}`);
       setIsDeleted(true);
-      console.log('Data berhasil dihapus');
+      console.log("Data berhasil dihapus");
     } catch (error) {
       console.error(error);
     }
@@ -27,22 +27,26 @@ const ExpenseItem = (props) => {
   };
 
   if (isDeleted) {
-    return null; // Menghilangkan komponen setelah penghapusan berhasil dilakukan
+    return null; // Menghilangkan komponen setelah penghapusan berhasil dilakukan .
   }
 
   return (
     <li>
-      <Card className='expense-item'>
+      <Card className="expense-item">
         <ExpenseDate date={props?.date} />
-        <div className='expense-item__description'>
+        <div className="expense-item__description">
           <h2>{props.title}</h2>
-          <div className='expense-item__price'>${props.amount}</div>
+          <div className="expense-item__price">${props.amount}</div>
           <Link to={`/details/${props.id}`}>
-            <button><FaEye /></button>
+            <button>
+              <FaEye />
+            </button>
           </Link>
           <button onClick={deleteHandler}>Delete</button>
           <Link to={`/update/${props.id}`}>
-            <button><FaEdit /></button>
+            <button>
+              <FaEdit />
+            </button>
           </Link>
         </div>
       </Card>

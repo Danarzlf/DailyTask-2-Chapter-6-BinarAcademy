@@ -12,71 +12,16 @@
     {
       "name": "Products",
       "description": "Products API Collection"
+    },
+    {
+      "name": "Warehouses",
+      "description": "Warehouses API Collection"
     }
   ],
   "paths": {
-    "/posts": {
-      "post": {
-        "requestBody": {
-          "description": "Success created new post",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "example": "Success"
-                  },
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "example": "New Post"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Success created new post",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Success"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "example": "New Post"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/auth/login": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "requestBody": {
           "description": "This is Login API",
           "required": true,
@@ -162,9 +107,7 @@
     },
     "/api/v1/auth/register": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "requestBody": {
           "description": "Success registered new user",
           "required": true,
@@ -340,9 +283,7 @@
     },
     "/api/v1/products": {
       "post": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "security": [
           {
             "bearerToken": []
@@ -367,6 +308,10 @@
                   "stock": {
                     "type": "integer",
                     "example": 10
+                  },
+                  "image": {
+                    "type": "integer",
+                    "example": null
                   }
                 }
               }
@@ -376,7 +321,6 @@
         "responses": {
           "201": {
             "description": "Success created new product",
-            "schema": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -456,18 +400,10 @@
         }
       },
       "get": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "security": [
           {
             "bearerToken": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id"
           }
         ],
         "responses": {
@@ -534,9 +470,7 @@
     },
     "/api/v1/products/{id}": {
       "get": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "security": [
           {
             "bearerToken": []
@@ -585,7 +519,7 @@
                             "warehouseId": {
                               "type": "integer",
                               "example": "12"
-                            },                            
+                            },
                             "image": {
                               "type": "text",
                               "example": null
@@ -608,13 +542,33 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Product id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success delete Product by Id"
+          },
+          "400": {
+            "description": "Failed delete Product because Product id not found"
+          }
+        }
       }
     },
     "/api/v1/products/search": {
       "get": {
-        "tags": [
-          "Products"
-        ],        
+        "tags": ["Products"],
         "parameters": [
           {
             "in": "query",
@@ -658,7 +612,7 @@
                             "warehouseId": {
                               "type": "integer",
                               "example": "12"
-                            },                            
+                            },
                             "image": {
                               "type": "text",
                               "example": null
@@ -674,6 +628,261 @@
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/warehouses": {
+      "get": {
+        "tags": ["Warehouses"],
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all warehouse data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "warehouses": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "example": "12"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "car"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": null
+                            },
+                            "updatedAt": {
+                              "type": "date",
+                              "example": "2022-10-17T14:04:48.389Z"
+                            },
+                            "createdAt": {
+                              "type": "date",
+                              "example": "2022-10-17T14:04:48.389Z"
+                            },
+                            "Products": {
+                              "type": "array",
+                              "example": []
+                            },
+                            "image": {
+                              "type": "text",
+                              "example": null
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Warehouses"],
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "requestBody": {
+          "description": "Success created new warehouse",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Toko Ari"
+                  },
+                  "address": {
+                    "type": "integer",
+                    "example": "jl. sudirman raya"
+                  },
+                  "owner": {
+                    "type": "string",
+                    "example": "Ari"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Create",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "newWarehouse": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Toko Ari"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": null
+                            },
+                            "updatedAt": {
+                              "type": "date",
+                              "example": "2022-10-17T14:04:48.389Z"
+                            },
+                            "createdAt": {
+                              "type": "date",
+                              "example": "2022-10-17T14:04:48.389Z"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Wrong Password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Wrong Password"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/warehouses/{id}": {
+      "get": {
+        "tags": ["Warehouses"],
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get warehouse by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "newProduct": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Toko Ari"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": null
+                            },
+                            "updatedAt": {
+                              "type": "date",
+                              "example": "2022-10-17T14:04:48.389Z"
+                            },
+                            "createdAt": {
+                              "type": "date",
+                              "example": "2022-10-17T14:04:48.389Z"
+                            },
+                            "Products": {
+                              "type": "array",
+                              "example": []
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed get Warehouses data because Warehouse id not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Failed get Warehouses data because Warehouse id not found"
                     }
                   }
                 }
@@ -715,12 +924,86 @@
           }
         }
       },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "fathan"
+          },
+          "price": {
+            "type": "integer",
+            "example": 100000
+          },
+          "stock": {
+            "type": "integer",
+            "example": 10
+          },
+          "image": {
+            "type": "text",
+            "example": null
+          },
+          "warehouseId": {
+            "type": "integer",
+            "example": 1
+          },
+          "updatedAt": {
+            "type": "date",
+            "example": "2022-10-17T14:04:48.389Z"
+          },
+          "createdAt": {
+            "type": "date",
+            "example": "2022-10-17T14:04:48.389Z"
+          }
+        }
+      },
       "Warehouse": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
             "example": "Toko Fathan"
+          },
+          "address": {
+            "type": "string",
+            "example": "jl. sudirman raya"
+          },
+          "updatedAt": {
+            "type": "date",
+            "example": "2022-10-17T14:04:48.389Z"
+          },
+          "createdAt": {
+            "type": "date",
+            "example": "2022-10-17T14:04:48.389Z"
+          }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "example": "Bordeaux"
+          },
+          "address": {
+            "type": "string",
+            "example": "jl. sudirman raya"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "text"
+            },
+            "example": [null, null]
+          },
+          "role": {
+            "type": "string",
+            "enum": ["admin", "User", "Super Admin"],
+            "example": "User"
+          },
+          "userId": {
+            "type": "integer",
+            "example": "7"
           },
           "updatedAt": {
             "type": "date",

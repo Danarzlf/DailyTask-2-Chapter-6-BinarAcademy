@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const ExpenseDetail = () => {
+const ExpenseFormUpdate = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null); // Menambahkan state imageFile
   const [isLoading, setIsLoading] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null); // Menambahkan state previewImage
 
   const params = useParams();
 
@@ -20,6 +22,7 @@ const ExpenseDetail = () => {
         setPrice(price);
         setStock(stock);
         setImage(image);
+        setPreviewImage(image); // Mengatur previewImage saat melakukan fetch data
       })
       .catch(function (error) {
         console.log(error.message);
@@ -30,6 +33,12 @@ const ExpenseDetail = () => {
     fetchData();
   }, [params.id]);
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImageFile(file);
+    setPreviewImage(URL.createObjectURL(file)); // Mengatur previewImage saat memilih gambar baru
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -38,11 +47,19 @@ const ExpenseDetail = () => {
       name: name,
       price: price,
       stock: stock,
-      image: image,
     };
 
+    // Membuat objek FormData dan menambahkan data gambar
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    // Menambahkan data lainnya ke dalam FormData
+    Object.keys(updatedData).forEach((key) => {
+      formData.append(key, updatedData[key]);
+    });
+
     axios
-      .put(`http://localhost:8000/api/v1/products/${params.id}`, updatedData)
+      .put(`http://localhost:8000/api/v1/products/${params.id}`, formData)
       .then(function (response) {
         console.log(response.data.data);
         setIsLoading(false);
@@ -87,26 +104,22 @@ const ExpenseDetail = () => {
         </label>
         <br />
         <label>
-          Image URL:
-          <input
-            type="text"
-            value={image}
-            onChange={(event) => setImage(event.target.value)}
-          />
+          Image File:
+          <input type="file" onChange={handleImageChange} />
         </label>
         <br />
         <div>
-          {image && (
-            <img src={image} alt="Product" style={{ width: "200px" }} />
+          {previewImage && (
+            <img src={previewImage} alt="Product" style={{ width: "200px" }} />
           )}
         </div>
         <br />
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Updating..." : "Update"}
+          {isLoading ? "Please Wait..." : "Update"}
         </button>
       </form>
     </div>
   );
 };
 
-export default ExpenseDetail;
+export default ExpenseFormUpdate;

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     /**
@@ -13,37 +11,37 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Product.init({
-    name: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    stock: {
-      type: DataTypes.INTEGER,
-      defaultValue: 10
+  Product.init(
+    {
+      name: DataTypes.STRING,
+      price: DataTypes.FLOAT,
+      stock: {
+        type: DataTypes.INTEGER,
+        defaultValue: 10,
+      },
+      image: DataTypes.TEXT,
+      warehouseId: DataTypes.INTEGER,
     },
-    image: DataTypes.TEXT,
-    warehouseId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Product',
-  },
-    Product.findProduct = async function (value) {
-      const product = await Product.findOne(
-        {
-          where: {
-            id: value
-          }
-        }
-      )
-      return product
+    {
+      sequelize,
+      modelName: "Product",
     },
+    (Product.findProduct = async function (value) {
+      const product = await Product.findOne({
+        where: {
+          id: value,
+        },
+      });
+      return product;
+    })
   );
 
   Product.associate = function (models) {
     //association can be defined here
     Product.belongsTo(models.Warehouse, {
-      foreignKey: 'warehouseId'
-    })
-  }
+      foreignKey: "warehouseId",
+    });
+  };
 
   return Product;
 };

@@ -23,6 +23,13 @@ const NewExpense = (props) => {
   const stopEditingHandler = () => {
     setIsEditing(false);
   };
+  const logoutHandler = () => {
+    // Hapus token atau informasi login lainnya dari localStorage
+    localStorage.removeItem("token");
+    // Lakukan tindakan lain yang diperlukan setelah logout, seperti mengarahkan pengguna ke halaman login
+    window.location.href = "/login";
+  };
+
 
   return (
     <div className='new-expense'>
@@ -36,6 +43,7 @@ const NewExpense = (props) => {
           onCancel={stopEditingHandler}
         />
       )}
+      <button onClick={logoutHandler}>Logout</button> {/* Tombol Logout */}
     </div>
     
   );

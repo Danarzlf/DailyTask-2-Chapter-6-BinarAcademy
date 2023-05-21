@@ -12,7 +12,9 @@
         console.log(params);
 
         useEffect(() => {
-            axios.get(`http://localhost:8000/api/v1/products/${params.id}`)
+            const token = localStorage.getItem("token");
+            const headers = { 'Authorization': `Bearer ${token}`};
+            axios.get(`http://localhost:8000/api/v1/products/${params.id}`, { headers })
             .then(function (response) {
                 console.log(response.data.data)
                 setData(response.data.data)

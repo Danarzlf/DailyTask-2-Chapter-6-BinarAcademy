@@ -13,17 +13,14 @@ const ExpenseItem = (props) => {
 
   const deleteHandler = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/v1/products/${props.id}`);
+      const token = localStorage.getItem("token");
+      const headers = { 'Authorization': `Bearer ${token}`};
+      await axios.delete(`http://localhost:8000/api/v1/products/${props.id}`, { headers });
       setIsDeleted(true);
       console.log("Data berhasil dihapus");
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const updateHandler = () => {
-    // Logika penanganan saat tombol "Update" diklik
-    window.location.href = `/update/${props.id}`;
   };
 
   if (isDeleted) {

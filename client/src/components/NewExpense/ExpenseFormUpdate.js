@@ -70,7 +70,7 @@ const ExpenseFormUpdate = () => {
         console.log(response.data.data);
         setIsLoading(false);
         fetchData();
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       })
       .catch(function (error) {
         console.log(error.message);

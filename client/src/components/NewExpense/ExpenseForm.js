@@ -39,10 +39,11 @@ const ExpenseForm = (props) => {
 
     try {
       const token = localStorage.getItem("token");
-      const headers = { 'Authorization': `Bearer ${token}`};
+      const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.post(
         "http://localhost:8000/api/v1/products",
-        formData, { headers }
+        formData,
+        { headers }
       );
       console.log(response.data); // Tindakan lanjutan setelah berhasil menyimpan data ke backend
 
@@ -50,7 +51,7 @@ const ExpenseForm = (props) => {
       setEnteredAmount("");
       setEnteredStock("");
       setSelectedFile(null);
-      window.location.href = "/";
+      window.location.href = "/dashboard";
     } catch (error) {
       console.error(error); // Tindakan lanjutan jika terjadi error saat mengirim data ke backend
     }
@@ -96,8 +97,8 @@ const ExpenseForm = (props) => {
         <button type="button" onClick={props.onCancel}>
           Cancel
         </button>
-        <button type='submit' disabled={isLoading}>
-          {isLoading ? 'Please Wait...' : 'Add Product'}
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Please Wait..." : "Add Product"}
         </button>
       </div>
     </form>

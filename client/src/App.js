@@ -19,19 +19,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Expense />} />
-        <Route
-          path="/coba"
-          element={
-            <>
-              <h2>hai Server </h2>
-            </>
-          }
-        />
+        <Route path="/dashboard" element={<Expense />} />
+        <Route path="/" element={<ExpenseLogin />} />
         <Route path="/details/:id" element={<ExpenseDetail />} />
         <Route path="/update/:id" element={<ExpenseFormUpdate />} />
         <Route path="/register" element={<ExpenseRegister />} />{" "}
-        <Route path="/login" element={<ExpenseLogin />} />
         {/* Tambahkan properti element untuk rute login */}
       </Routes>
     </BrowserRouter>

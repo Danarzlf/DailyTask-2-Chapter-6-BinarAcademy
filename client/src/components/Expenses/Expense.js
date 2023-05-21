@@ -11,8 +11,6 @@ const Expense = () => {
 
     const dispatch = useDispatch();
 
-    console.log(expenses)
-
     // const coba = dispatch(getProducts());
     // console.log(coba)
 

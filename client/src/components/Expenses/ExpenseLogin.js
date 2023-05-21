@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ExpenseLogin = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ const ExpenseLogin = () => {
       localStorage.setItem("token", response.data.data.token);
 
       // Redirect ke halaman localhost:3000 setelah login berhasil
-      window.location.href = "http://localhost:3000";
+      window.location.href = "http://localhost:3000/dashboard";
     } catch (error) {
       setError("Invalid email or password");
     }
@@ -55,6 +56,9 @@ const ExpenseLogin = () => {
         </div>
         <button type="submit">Log in</button>
       </form>
+      <p>
+        Don't have an account? <Link to="/register">Register here</Link>
+      </p>
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import ExpenseForm from './ExpenseForm';
-import './NewExpense.css';
-import { Button } from 'react-bootstrap';
+import ExpenseForm from "./ExpenseForm";
+import "./NewExpense.css";
+import { Button } from "react-bootstrap";
 
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -27,14 +27,12 @@ const NewExpense = (props) => {
     // Hapus token atau informasi login lainnya dari localStorage
     localStorage.removeItem("token");
     // Lakukan tindakan lain yang diperlukan setelah logout, seperti mengarahkan pengguna ke halaman login
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
-
   return (
-    <div className='new-expense'>
+    <div className="new-expense">
       {!isEditing && (
-        
         <button onClick={startEditingHandler}>Add New Expense</button>
       )}
       {isEditing && (
@@ -45,7 +43,6 @@ const NewExpense = (props) => {
       )}
       <button onClick={logoutHandler}>Logout</button> {/* Tombol Logout */}
     </div>
-    
   );
 };
 

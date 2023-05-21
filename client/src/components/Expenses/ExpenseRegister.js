@@ -66,7 +66,7 @@ const ExpenseRegister = () => {
       {error && <p>{error}</p>}
       {successMessage && (
         <p>
-          Silahkan <a href="http://localhost:3000/login">login disini</a>
+          Silahkan <a href="http://localhost:3000">login disini</a>
         </p>
       )}
       <form onSubmit={handleSubmit}>

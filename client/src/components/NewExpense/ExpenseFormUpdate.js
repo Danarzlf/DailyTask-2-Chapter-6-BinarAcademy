@@ -14,8 +14,10 @@ const ExpenseFormUpdate = () => {
   const params = useParams();
 
   const fetchData = () => {
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: `Bearer ${token}` };
     axios
-      .get(`http://localhost:8000/api/v1/products/${params.id}`)
+      .get(`http://localhost:8000/api/v1/products/${params.id}`, { headers })
       .then(function (response) {
         const { name, price, stock, image } = response.data.data.product;
         setName(name);
@@ -58,8 +60,12 @@ const ExpenseFormUpdate = () => {
       formData.append(key, updatedData[key]);
     });
 
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: `Bearer ${token}` };
     axios
-      .put(`http://localhost:8000/api/v1/products/${params.id}`, formData)
+      .put(`http://localhost:8000/api/v1/products/${params.id}`, formData, {
+        headers,
+      })
       .then(function (response) {
         console.log(response.data.data);
         setIsLoading(false);

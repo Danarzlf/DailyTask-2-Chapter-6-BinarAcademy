@@ -8,6 +8,7 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredStock, setEnteredStock] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Menambahkan state isLoading
 
   const titleChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -28,6 +29,8 @@ const ExpenseForm = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
+    setIsLoading(true); // Mengatur isLoading menjadi true saat mulai submit
+
     const formData = new FormData();
     formData.append("name", enteredName);
     formData.append("price", enteredAmount);
@@ -35,9 +38,11 @@ const ExpenseForm = (props) => {
     formData.append("image", selectedFile);
 
     try {
+      const token = localStorage.getItem("token");
+      const headers = { 'Authorization': `Bearer ${token}`};
       const response = await axios.post(
         "http://localhost:8000/api/v1/products",
-        formData
+        formData, { headers }
       );
       console.log(response.data); // Tindakan lanjutan setelah berhasil menyimpan data ke backend
 
@@ -91,7 +96,9 @@ const ExpenseForm = (props) => {
         <button type="button" onClick={props.onCancel}>
           Cancel
         </button>
-        <button type="submit">Add Expense</button>
+        <button type='submit' disabled={isLoading}>
+          {isLoading ? 'Please Wait...' : 'Add Product'}
+        </button>
       </div>
     </form>
   );

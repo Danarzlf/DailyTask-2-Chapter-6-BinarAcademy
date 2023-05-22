@@ -32,6 +32,7 @@ const NewExpense = (props) => {
   const confirmLogoutHandler = () => {
     // Hapus token atau informasi login lainnya dari localStorage
     localStorage.removeItem("token");
+
     // Lakukan tindakan lain yang diperlukan setelah logout, seperti mengarahkan pengguna ke halaman login
     window.location.href = "/";
   };
@@ -44,7 +45,10 @@ const NewExpense = (props) => {
   return (
     <div className="new-expense">
       {!isEditing && (
-        <button onClick={startEditingHandler}>Add New Expense</button>
+        <>
+          <button onClick={startEditingHandler}>Add New Product</button>
+          <button onClick={logoutHandler}>Logout</button>
+        </>
       )}
       {isEditing && (
         <ExpenseForm
@@ -52,7 +56,6 @@ const NewExpense = (props) => {
           onCancel={stopEditingHandler}
         />
       )}
-      <button onClick={logoutHandler}>Logout</button>
 
       <Modal show={showConfirmationModal} onHide={cancelLogoutHandler} centered>
         <Modal.Header closeButton>

@@ -54,7 +54,7 @@ const NewExpense = (props) => {
       )}
       <button onClick={logoutHandler}>Logout</button>
 
-      <Modal show={showConfirmationModal} onHide={cancelLogoutHandler}>
+      <Modal show={showConfirmationModal} onHide={cancelLogoutHandler} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Logout</Modal.Title>
         </Modal.Header>

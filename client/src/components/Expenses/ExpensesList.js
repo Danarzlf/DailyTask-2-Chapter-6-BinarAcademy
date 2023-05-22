@@ -25,6 +25,7 @@ const ExpensesList = (props) => {
                   date={expense.createdAt}
                   datee={expense.updatedAt}
                   image={expense.image}
+                  stock={expense.stock}
                 />
               </Card.Body>
             </Card>

@@ -9,6 +9,62 @@ import Button from "react-bootstrap/Button";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
+  const styles = `
+  .btn {
+    padding: 10px;
+    border-radius:4px;
+  }
+
+  .btn-delete{
+    border: 1px solid rgba(250, 44, 90, 1);
+    background-color:white;
+    color: rgba(250, 44, 90, 1);
+  }
+
+  .btn-delete:hover{
+    border: 1px solid rgba(250, 44, 90, 1);
+    background-color:rgba(250, 44, 90, 1);
+    color:white
+  }
+  .trash-icon{
+    style={{ color: "rgba(250, 44, 90, 1)" }}
+  }
+  .btn-delete:hover .trash-icon {
+    color: #ffffff;
+  }
+  .btn-edit{
+    border: 1px solid rgba(92, 184, 95, 1);
+    background-color:white;
+    color: rgba(92, 184, 95, 1);
+  }
+  .btn-edit:hover{
+    border: 1px solid rgba(92, 184, 95, 1);
+    background-color:rgba(92, 184, 95, 1);
+    color:white
+  }
+
+  .btn-detail{
+    color:white;
+    border: 1px solid  #0C7D81;
+  }
+
+  .btn-detail:hover{
+    border: 1px solid  #0C7D81;
+    background-color:white;
+  }
+
+  .title{
+    font-size:24px;
+  }
+
+  .harga{
+    font-size:18px;
+  }
+
+  .stock{
+    font-size : 16px
+  }
+  `;
   const [isDeleted, setIsDeleted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -36,15 +92,19 @@ const ExpenseItem = (props) => {
   return (
     <>
       <style>{styles}</style>
-      <img src={props.image} style={{ width: "100%" }} />
+      <img className="mb-3" src={props.image} style={{ width: "100%" }} />
       <div className="">
-        <h2>{props.title}</h2>
-        <div className="">${props.amount}</div>
+        <h2 className="title">
+          {props.title}
+          <span className="harga">/Rp. {props.amount}</span>
+        </h2>
+        <div className="stock mb-3">Sisa Stock : {props?.stock}</div>
+
         <div className="row mb-2">
           <div className="col-md-6">
             <button
               className="btn btn-delete"
-              onClick={deleteHandler}
+              onClick={handleShow}
               style={{ width: "100%" }}
             >
               <FaTrash className="trash-icon" /> Delete
@@ -53,13 +113,18 @@ const ExpenseItem = (props) => {
           <div className="col-md-6">
             <Link to={`/update/${props.id}`}>
               <button className="btn btn-edit" style={{ width: "100%" }}>
-                <FaEdit /> Edit
+                <FaEdit className="edit-icon" /> Edit
               </button>
             </Link>
           </div>
         </div>
 
         <Link to={`/details/${props.id}`}>
+          <div className="d-grid">
+            <button className="btn btn-detail">
+              <FaEye className="detail-icon" /> Detail Product
+            </button>
+          </div>
         </Link>
       </div>
 
@@ -84,9 +149,9 @@ const ExpenseItem = (props) => {
             Cancel
           </Button>
           <Button
+            className="btn-delete"
             variant="danger"
             onClick={deleteHandler}
-            className="delete-button"
           >
             Delete
           </Button>

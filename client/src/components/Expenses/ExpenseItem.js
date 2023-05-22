@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaEye, FaEdit } from "react-icons/fa";
+import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ExpenseDate from "./ExpenseDate";
@@ -35,22 +35,31 @@ const ExpenseItem = (props) => {
 
   return (
     <>
-      <img src={props.image} style={{ width: "50%" }} />
-      <ExpenseDate date={props.datee} />
-
+      <style>{styles}</style>
+      <img src={props.image} style={{ width: "100%" }} />
       <div className="">
         <h2>{props.title}</h2>
-        <div className="expense-item__price">${props.amount}</div>
+        <div className="">${props.amount}</div>
+        <div className="row mb-2">
+          <div className="col-md-6">
+            <button
+              className="btn btn-delete"
+              onClick={deleteHandler}
+              style={{ width: "100%" }}
+            >
+              <FaTrash className="trash-icon" /> Delete
+            </button>
+          </div>
+          <div className="col-md-6">
+            <Link to={`/update/${props.id}`}>
+              <button className="btn btn-edit" style={{ width: "100%" }}>
+                <FaEdit /> Edit
+              </button>
+            </Link>
+          </div>
+        </div>
+
         <Link to={`/details/${props.id}`}>
-          <button>
-            <FaEye />
-          </button>
-        </Link>
-        <button onClick={handleShow}>Delete</button>
-        <Link to={`/update/${props.id}`}>
-          <button>
-            <FaEdit />
-          </button>
         </Link>
       </div>
 

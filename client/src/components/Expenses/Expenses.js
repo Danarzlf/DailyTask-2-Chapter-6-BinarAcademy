@@ -7,6 +7,8 @@ import ExpensesChart from "./ExpensesChart";
 import "./Expenses.css";
 
 const Expenses = (props) => {
+  
+
   const [filteredYear, setFilteredYear] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 

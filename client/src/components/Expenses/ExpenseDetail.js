@@ -54,7 +54,7 @@ const ExpenseDetail = () => {
             </p>
             <p className="fs-5">Stock {data?.product?.stock} pcs</p>
             <p className="mt-1 mb-2">Created at {dateTime} </p>
-            <p className="mt-1">Update at {dateTimeUpdate} </p>
+            <p className="mt-1">Last Update {dateTimeUpdate} </p>
           </div>
           <Link to="/dashboard" className="btn-go-dashboard mb-4 mt-md-1 btn ms-md-4 col-6 col-sm-5 col-md-4 col-xl-2">
             &#8810; Go to Dashboard

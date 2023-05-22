@@ -40,12 +40,15 @@ const ExpenseRegister = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8000/api/v1/auth/register", {
-        name,
-        email,
-        password,
-        warehouseName,
-      });
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/auth/register",
+        {
+          name,
+          email,
+          password,
+          warehouseName,
+        }
+      );
 
       setName("");
       setEmail("");
@@ -55,7 +58,11 @@ const ExpenseRegister = () => {
       setError("");
       setShowModal(true);
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         setError(error.response.data.message);
       } else {
         setError("Failed to register");
@@ -71,22 +78,32 @@ const ExpenseRegister = () => {
       <div className="row justify-content-end">
         <div className="col-md-5 pt-3 ms-2 me-xxl-5 ps-xxl-4 ">
           <h1>Sign Up</h1>
-   loginstyle
+
           <p className="mb-5">
             Sign Up yourself to access all dashboard to help you manage
             everything
           </p>
-         
-        main
           {successMessage && (
-            <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false} centered>
+            <Modal
+              show={showModal}
+              onHide={handleCloseModal}
+              backdrop="static"
+              keyboard={false}
+              centered
+            >
               <Modal.Header>
                 <Modal.Title>Registration Success</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <img src="assets/images/Group 12.png" alt="background" className="img-fluid mt-3 mb-3 mx-auto d-block" style={{ width: "30%" }} />
+                <img
+                  src="assets/images/Group 12.png"
+                  alt="background"
+                  className="img-fluid mt-3 mb-3 mx-auto d-block"
+                  style={{ width: "30%" }}
+                />
                 <p>
-                  Selamat {successMessage}, sebentar lagi kamu bisa menikmati kenikmatan dunia. Selanjutnya silahkan
+                  Selamat {successMessage}, sebentar lagi kamu bisa menikmati
+                  kenikmatan dunia. Selanjutnya silahkan
                   <Link to={"http://localhost:3000"} className="fw-bold">
                     {" "}
                     Login disini
@@ -94,7 +111,11 @@ const ExpenseRegister = () => {
                 </p>
               </Modal.Body>
               <Modal.Footer>
-                <Button style={{ padding: "10px 20px" }} variant="primary" onClick={handleCloseModal}>
+                <Button
+                  style={{ padding: "10px 20px" }}
+                  variant="primary"
+                  onClick={handleCloseModal}
+                >
                   Close
                 </Button>
               </Modal.Footer>
@@ -102,10 +123,30 @@ const ExpenseRegister = () => {
           )}
           <form onSubmit={handleSubmit}>
             <div className="input-group mb-2">
-              <input type="text" className="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" value={name} onChange={handleNameChange} required style={{ fontFamily: "Segoe UI, sans-serif" }} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Name"
+                aria-label="Name"
+                aria-describedby="basic-addon1"
+                value={name}
+                onChange={handleNameChange}
+                required
+                style={{ fontFamily: "Segoe UI, sans-serif" }}
+              />
             </div>
             <div className="input-group mb-2">
-              <input type="text" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" value={email} onChange={handleEmailChange} required style={{ fontFamily: "Segoe UI, sans-serif" }} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Email"
+                aria-label="Email"
+                aria-describedby="basic-addon1"
+                value={email}
+                onChange={handleEmailChange}
+                required
+                style={{ fontFamily: "Segoe UI, sans-serif" }}
+              />
             </div>
             <div className="input-group mb-2">
               <input
@@ -133,7 +174,7 @@ const ExpenseRegister = () => {
                 style={{ fontFamily: "Segoe UI, sans-serif" }}
               />
             </div>
-loginstyle
+
             {error && <p className="error-message">{error}</p>}
             <div className="d-grid gap-2 mt-5">
               <button
@@ -141,9 +182,6 @@ loginstyle
                 type="submit"
                 disabled={isLoading}
               >
-
-            
- main
                 {isLoading ? "Please wait..." : "SIGN UP"}
               </button>
             </div>
@@ -155,7 +193,12 @@ loginstyle
         </div>
 
         <div className="col-md-6 d-flex justify-content-end">
-          <img src="assets/images/Group 11.png" alt="background" className="img-fluid" style={{ width: "100%" }} />
+          <img
+            src="assets/images/Group 11.png"
+            alt="background"
+            className="img-fluid"
+            style={{ width: "100%" }}
+          />
         </div>
       </div>
     </div>

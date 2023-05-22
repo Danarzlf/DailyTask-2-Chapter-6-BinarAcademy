@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./ExpenseFormUpdate.css";
 import { useParams } from "react-router-dom";
+import { Form, Button, Col, Row } from "react-bootstrap";
 
 const ExpenseFormUpdate = () => {
   const [name, setName] = useState("");
@@ -79,52 +81,68 @@ const ExpenseFormUpdate = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Product Update</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Price:
-          <input
-            type="number"
-            value={price}
-            onChange={(event) => setPrice(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Stock:
-          <input
-            type="number"
-            value={stock}
-            onChange={(event) => setStock(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Image File:
-          <input type="file" onChange={handleImageChange} />
-        </label>
-        <br />
+      <p className="mb-5">
+          Update your product in here!!!
+      </p>
+      <Form onSubmit={handleSubmit}>
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
+        <Form.Label column sm={2}>
+          Name
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control 
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}/>
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalPrice">
+        <Form.Label column sm={2}>
+          Price
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control 
+          type="number"
+          value={price}
+          onChange={(event) => setPrice(event.target.value)}/>
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalStock">
+        <Form.Label column sm={2}>
+          Stock
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control 
+          type="number"
+          value={stock}
+          onChange={(event) => setStock(event.target.value)}/>
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalImage">
+        <Form.Label column sm={2}>
+          Image File
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control 
+          type="file"
+          onChange={handleImageChange}/>
+        </Col>
+      </Form.Group>
         <div>
           {previewImage && (
             <img src={previewImage} alt="Product" style={{ width: "200px" }} />
           )}
         </div>
-        <br />
-        <button type="submit" disabled={isLoading}>
+        <br/>
+        <Form.Group>
+        <button className="btn btn-primary lg sign-up fw-bold" type="submit" disabled={isLoading}>
           {isLoading ? "Please Wait..." : "Update"}
         </button>
-      </form>
-    </div>
+        </Form.Group>
+      </Form>
+      </div>
   );
 };
 

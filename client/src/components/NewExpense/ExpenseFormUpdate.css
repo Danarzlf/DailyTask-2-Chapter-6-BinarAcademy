@@ -1,0 +1,26 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+.container {
+    width: 80%; /* Lebar 80% dari lebar parent element */
+    margin: 0 auto; /* untuk mengatur agar konten berada di tengah */
+    max-height: 600px;
+    overflow: auto; /* Tambahkan overflow:auto; untuk menampilkan scroll jika konten melebihi tinggi maksimum */
+}
+h1 {
+    font-size: 36px;
+    color: #1B1B1D;
+    letter-spacing: -1px;
+    padding-top: 20px;
+}
+p{
+    font-size: 16px;
+    color: #1B1B1D;
+    letter-spacing: -0.5px;
+}
+.btn {
+    border: none;
+    padding: 14px 20px;
+    font-size: 14px;
+    background: #0C7D81;
+}

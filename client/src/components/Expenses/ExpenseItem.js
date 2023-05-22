@@ -9,31 +9,6 @@ import Button from "react-bootstrap/Button";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
-  const styles = `
-  .btn {
-    padding: 10px;
-    border-radius:4px;
-  }
-
-  .btn-delete{
-    border: 1px solid rgba(250, 44, 90, 1);
-    background-color:white;
-    color: rgba(250, 44, 90, 1);
-  }
-
-  .btn-delete:hover{
-    border: 1px solid rgba(250, 44, 90, 1);
-    background-color:rgba(250, 44, 90, 1);
-    color:white
-  }
-  .trash-icon{
-    style={{ color: "rgba(250, 44, 90, 1)" }}
-  }
-  .btn-delete:hover .trash-icon {
-    color: #ffffff;
-  }
-
-  `;
   const [isDeleted, setIsDeleted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -85,11 +60,6 @@ const ExpenseItem = (props) => {
         </div>
 
         <Link to={`/details/${props.id}`}>
-          <div className="d-grid">
-            <button className="btn btn-detail">
-              <FaEye /> Detail Product
-            </button>
-          </div>
         </Link>
       </div>
 

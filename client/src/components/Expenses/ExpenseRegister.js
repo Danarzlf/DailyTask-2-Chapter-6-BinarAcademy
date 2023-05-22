@@ -83,7 +83,6 @@ const ExpenseRegister = () => {
             Sign Up yourself to access all dashboard to help you manage
             everything
           </p>
-
           {successMessage && (
             <Modal
               show={showModal}

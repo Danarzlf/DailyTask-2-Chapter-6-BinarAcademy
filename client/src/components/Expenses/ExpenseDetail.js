@@ -7,6 +7,8 @@ const ExpenseDetail = () => {
   const [data, setData] = useState({});
   let params = useParams();
 
+  
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const headers = { Authorization: `Bearer ${token}` };
@@ -20,6 +22,22 @@ const ExpenseDetail = () => {
         console.log(error.message);
       });
   }, [setData]);
+
+  const dateTime = new Date(data?.product?.createdAt).toLocaleString("id-ID", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+  const dateTimeUpdate = new Date(data?.product?.updatedAt).toLocaleString("id-ID", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+  });
 
   return (
     <div className="container">
@@ -35,8 +53,10 @@ const ExpenseDetail = () => {
               consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
             </p>
             <p className="fs-5">Stock {data?.product?.stock} pcs</p>
+            <p className="mt-1 mb-2">Created at {dateTime} </p>
+            <p className="mt-1">Update at {dateTimeUpdate} </p>
           </div>
-          <Link to="/dashboard" className="btn-go-dashboard mt-md-1 btn ms-md-4 col-6 col-sm-5 col-md-4 col-xl-2">
+          <Link to="/dashboard" className="btn-go-dashboard mb-4 mt-md-1 btn ms-md-4 col-6 col-sm-5 col-md-4 col-xl-2">
             &#8810; Go to Dashboard
           </Link>
         </div>

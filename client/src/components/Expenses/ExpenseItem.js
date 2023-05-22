@@ -14,8 +14,10 @@ const ExpenseItem = (props) => {
   const deleteHandler = async () => {
     try {
       const token = localStorage.getItem("token");
-      const headers = { 'Authorization': `Bearer ${token}`};
-      await axios.delete(`http://localhost:8000/api/v1/products/${props.id}`, { headers });
+      const headers = { Authorization: `Bearer ${token}` };
+      await axios.delete(`http://localhost:8000/api/v1/products/${props.id}`, {
+        headers,
+      });
       setIsDeleted(true);
       console.log("Data berhasil dihapus");
     } catch (error) {
@@ -28,26 +30,26 @@ const ExpenseItem = (props) => {
   }
 
   return (
-    <li>
-      <Card className="expense-item">
-        <ExpenseDate date={props?.date} />
-        <div className="expense-item__description">
-          <h2>{props.title}</h2>
-          <div className="expense-item__price">${props.amount}</div>
-          <Link to={`/details/${props.id}`}>
-            <button>
-              <FaEye />
-            </button>
-          </Link>
-          <button onClick={deleteHandler}>Delete</button>
-          <Link to={`/update/${props.id}`}>
-            <button>
-              <FaEdit />
-            </button>
-          </Link>
-        </div>
-      </Card>
-    </li>
+    <>
+      <img src={props.image} style={{ width: "50%" }} />
+      <ExpenseDate date={props.datee} />
+
+      <div className="">
+        <h2>{props.title}</h2>
+        <div className="expense-item__price">${props.amount}</div>
+        <Link to={`/details/${props.id}`}>
+          <button>
+            <FaEye />
+          </button>
+        </Link>
+        <button onClick={deleteHandler}>Delete</button>
+        <Link to={`/update/${props.id}`}>
+          <button>
+            <FaEdit />
+          </button>
+        </Link>
+      </div>
+    </>
   );
 };
 

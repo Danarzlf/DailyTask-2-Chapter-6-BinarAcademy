@@ -71,8 +71,13 @@ const ExpenseRegister = () => {
       <div className="row justify-content-end">
         <div className="col-md-5 pt-3 ms-2 me-xxl-5 ps-xxl-4 ">
           <h1>Sign Up</h1>
-          <p className="mb-5">Sign Up yourself to access all dashboard to help you manage everything</p>
-          {error && <p>{error}</p>}
+   loginstyle
+          <p className="mb-5">
+            Sign Up yourself to access all dashboard to help you manage
+            everything
+          </p>
+         
+        main
           {successMessage && (
             <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false} centered>
               <Modal.Header>
@@ -115,7 +120,7 @@ const ExpenseRegister = () => {
                 style={{ fontFamily: "Segoe UI, sans-serif" }}
               />
             </div>
-            <div className="input-group mb-5">
+            <div className="input-group mb-2">
               <input
                 type="text"
                 className="form-control"
@@ -128,8 +133,17 @@ const ExpenseRegister = () => {
                 style={{ fontFamily: "Segoe UI, sans-serif" }}
               />
             </div>
-            <div className="d-grid gap-2">
-              <button className="btn btn-primary lg sign-up fw-bold" type="submit" disabled={isLoading}>
+loginstyle
+            {error && <p className="error-message">{error}</p>}
+            <div className="d-grid gap-2 mt-5">
+              <button
+                className="btn btn-primary lg sign-up fw-bold"
+                type="submit"
+                disabled={isLoading}
+              >
+
+            
+ main
                 {isLoading ? "Please wait..." : "SIGN UP"}
               </button>
             </div>

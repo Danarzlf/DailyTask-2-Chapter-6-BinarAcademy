@@ -82,7 +82,6 @@ const ExpenseRegister = () => {
             Sign Up yourself to access all dashboard to help you manage
             everything
           </p>
-          {error && <p>{error}</p>}
           {successMessage && (
             <Modal
               show={showModal}
@@ -161,7 +160,7 @@ const ExpenseRegister = () => {
                 style={{ fontFamily: "Segoe UI, sans-serif" }}
               />
             </div>
-            <div className="input-group mb-5">
+            <div className="input-group mb-2">
               <input
                 type="text"
                 className="form-control"
@@ -174,7 +173,8 @@ const ExpenseRegister = () => {
                 style={{ fontFamily: "Segoe UI, sans-serif" }}
               />
             </div>
-            <div className="d-grid gap-2">
+            {error && <p className="error-message">{error}</p>}
+            <div className="d-grid gap-2 mt-5">
               <button
                 className="btn btn-primary lg sign-up fw-bold"
                 type="submit"

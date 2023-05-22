@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
-  console.log(props);
-
   const [isDeleted, setIsDeleted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const deleteHandler = async () => {
     try {
@@ -24,6 +25,9 @@ const ExpenseItem = (props) => {
       console.error(error);
     }
   };
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   if (isDeleted) {
     return null; // Menghilangkan komponen setelah penghapusan berhasil dilakukan .
@@ -42,13 +46,43 @@ const ExpenseItem = (props) => {
             <FaEye />
           </button>
         </Link>
-        <button onClick={deleteHandler}>Delete</button>
+        <button onClick={handleShow}>Delete</button>
         <Link to={`/update/${props.id}`}>
           <button>
             <FaEdit />
           </button>
         </Link>
       </div>
+
+      <Modal show={showModal} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img
+            src="assets/images/dlt.jpg"
+            alt="background"
+            className="img-fluid mt-2 mb-3 mx-auto d-block"
+            style={{ width: "30%" }}
+          />
+
+          <p className="text-center">
+            Are you sure you want to delete this product?
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            onClick={deleteHandler}
+            className="delete-button"
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

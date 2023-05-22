@@ -8,7 +8,6 @@ h1 {
 }
 
 .card-detail {
-  height: 35rem;
   border-radius: 10px;
   background-color: #eef7f6;
 }
@@ -33,13 +32,13 @@ h1 {
 
 @media only screen and (max-width: 1400px) {
   .card-detail {
-    height: 31rem;
+    
   }
 }
 
 @media only screen and (max-width: 1196px) {
   .card-detail {
-    height: 28rem;
+    
   }
 }
 

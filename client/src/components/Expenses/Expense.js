@@ -24,13 +24,6 @@ const Expense = () => {
         });
     };
 
-    // return React.createElement(
-    //   'div',
-    //   {},
-    //   React.createElement('h2', {}, "Let's get started!"),
-    //   React.createElement(Expenses, { items: expenses })
-    // );
-
     return (
         <>
             <NewExpense onAddExpense={addExpenseHandler} />

@@ -62,7 +62,7 @@ const ExpenseItem = (props) => {
   }
 
   .stock{
-    font-size : 16px
+    font-size : 14px
   }
   `;
   const [isDeleted, setIsDeleted] = useState(false);
@@ -76,6 +76,7 @@ const ExpenseItem = (props) => {
         headers,
       });
       setIsDeleted(true);
+      window.location.reload();
       console.log("Data berhasil dihapus");
     } catch (error) {
       console.error(error);
@@ -92,12 +93,20 @@ const ExpenseItem = (props) => {
   return (
     <>
       <style>{styles}</style>
-      <img className="mb-3" src={props.image} style={{ width: "100%" }} />
+      <img
+        className="mb-3"
+        src={props.image}
+        style={{ width: "100%", height: "220px", objectFit: "contain" }}
+      />
       <div className="">
-        <h2 className="title">
-          {props.title}
-          <span className="harga">/Rp. {props.amount}</span>
-        </h2>
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <h2 className="title">{props.title}</h2>
+          </div>
+          <div className="col-md-6 text-end">
+            <span className="harga">Rp. {props.amount}</span>
+          </div>
+        </div>
         <div className="stock mb-3">Sisa Stock : {props?.stock}</div>
 
         <div className="row mb-2">
